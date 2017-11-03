@@ -1,0 +1,4 @@
+rootProject.name = 'spring-cloud-advanced-load-balancing-demo'
+
+include 'cool-app'
+include 'load-balancing-sandbox'

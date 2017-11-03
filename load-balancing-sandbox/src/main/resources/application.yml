@@ -1,0 +1,38 @@
+server:
+  port: 9090
+
+management.security.enabled: false
+
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+logging:
+  level:
+    info.developerblog.spring.cloud.marathon.RibbonCustomConfiguration: DEBUG
+    com.netflix.loadbalancer.ZoneAffinityServerListFilter: DEBUG
+#    info.developerblog.spring.cloud.marathon: DEBUG
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
+hystrix.threadpool.default.coreSize: 500
+hystrix.threadpool.default.maximumSize: 500
+
+cool-app:
+  ribbon:
+#    ZonePattern: '.+\.(.+)'
+#    ServerWeightTaskTimerInterval: 100
+    NFLoadBalancerPingInterval: 100
+    ServerListRefreshInterval: 1000
+    MaxAutoRetries: 0
+    MaxAutoRetriesNextServer: 0
+    OkToRetryOnAllOperations: false
+    zoneAffinity.minAvailableServers: 1
+    EnableZoneAffinity: true

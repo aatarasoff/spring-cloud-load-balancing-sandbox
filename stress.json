@@ -1,0 +1,29 @@
+{
+  "baseUrl": "http://localhost:9090",
+  "tests": [
+    {
+      "rps": 10,
+      "duration": 1,
+      "target": {
+        "method": "GET",
+        "path": "/feign"
+      },
+      "sla": {
+        "latency": 10000,
+        "successRate": 10
+      }
+    },
+    {
+      "rps": 30,
+      "duration": 50,
+      "target": {
+        "method": "GET",
+        "path": "/feign"
+      },
+      "sla": {
+        "latency": 10000,
+        "successRate": 99.9
+      }
+    }
+  ]
+}

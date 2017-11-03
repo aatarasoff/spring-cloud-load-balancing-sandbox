@@ -1,0 +1,16 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    compile "info.developerblog.spring.cloud:spring-cloud-marathon-starter"
+}
+
+jar{
+    archiveName 'app.jar'
+}
+
+task dockerBuild(type: Exec) {
+    workingDir "${project.projectDir}"
+    commandLine 'docker', 'build', "--tag=cool-app:0.0.1", '.'
+}
+
+dockerBuild.dependsOn build

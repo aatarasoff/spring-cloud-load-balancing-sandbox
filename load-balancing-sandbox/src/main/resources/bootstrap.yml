@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: load-balancing-demo
+
+spring.cloud.discovery.client.health-indicator.enabled: false
+
+spring.cloud.marathon:
+  listOfServers: localhost:8080
+
+#spring.cloud.marathon.discovery.zone: zone1
