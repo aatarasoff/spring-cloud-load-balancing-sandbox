@@ -1,6 +1,6 @@
-#Spring Cloud Client Load Balancing Sandbox
+# Spring Cloud Client Load Balancing Sandbox
 
-##Guide
+## Guide
 1. Run docker-compose with following command: `docker-compose up -d`
 2. Check marathon at `localhost:8080`
 3. Build **cool-app**: `./gradlew dockerBuild`
