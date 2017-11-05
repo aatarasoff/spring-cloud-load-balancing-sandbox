@@ -34,5 +34,5 @@ cool-app:
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 0
     OkToRetryOnAllOperations: false
-    zoneAffinity.minAvailableServers: 1
+    zoneAffinity.minAvailableServers: 2
     EnableZoneAffinity: true
