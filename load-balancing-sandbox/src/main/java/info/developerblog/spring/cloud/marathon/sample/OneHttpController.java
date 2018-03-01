@@ -34,49 +34,51 @@ public class OneHttpController {
     @Value("${cool.application.name:cool-app}")
     private String serviceId;
 
-    @Path("/onecall")
-    public Response onecall() throws ClientException {
-        return new HystrixCommand<Response>(
-                HystrixCommand.Setter
-                        .withGroupKey(HystrixCommandGroupKey.Factory.asKey("cool-app-all"))
-                        .andCommandKey(HystrixCommandKey.Factory.asKey("cool-app-call"))
-                        .andCommandPropertiesDefaults(
-                                HystrixCommandProperties.Setter()
+    private HystrixCommand<Response> hystrixCommand = new HystrixCommand<Response>(
+            HystrixCommand.Setter
+                    .withGroupKey(HystrixCommandGroupKey.Factory.asKey("cool-app-all"))
+                    .andCommandKey(HystrixCommandKey.Factory.asKey("cool-app-call"))
+                    .andCommandPropertiesDefaults(
+                            HystrixCommandProperties.Setter()
                                     .withCircuitBreakerEnabled(true)
                                     .withCircuitBreakerErrorThresholdPercentage(50)
                                     .withFallbackEnabled(true)
                                     .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
                                     .withExecutionTimeoutEnabled(true)
                                     .withExecutionTimeoutInMilliseconds(10000)
-                        )
-                        .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("cool-app-pool-all"))
-                        .andThreadPoolPropertiesDefaults(
-                                HystrixThreadPoolProperties.Setter()
+                    )
+                    .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("cool-app-pool-all"))
+                    .andThreadPoolPropertiesDefaults(
+                            HystrixThreadPoolProperties.Setter()
                                     .withCoreSize(500)
                                     .withMaximumSize(500)
-                        )
-        ) {
-            @Override
-            protected Response run() throws Exception {
-                OneHttpResponse response = oneLoadBalancerFactory
-                        .create("cool-app")
-                        .executeWithLoadBalancer(
-                                new OneHttpRequest(RequestMethod.GET, "http://"+ serviceId +"/me")
-                        );
+                    )
+    ) {
+        @Override
+        protected Response run() throws Exception {
+            OneHttpResponse response = oneLoadBalancerFactory
+                    .create("cool-app")
+                    .executeWithLoadBalancer(
+                            new OneHttpRequest(RequestMethod.GET, "http://" + serviceId + "/me")
+                    );
 
-                if (response.isSuccess()) {
-                    return Response.ok(new String((byte[]) response.getPayload(), StandardCharsets.UTF_8));
-                }
-
-                log.error("Error while calling");
-
-                throw new Exception("no success");
+            if (response.isSuccess()) {
+                return Response.ok(new String((byte[]) response.getPayload(), StandardCharsets.UTF_8));
             }
 
-            @Override
-            protected Response getFallback() {
-                return new Response(Response.INTERNAL_ERROR);
-            }
-        }.execute();
+            log.error("Error while calling");
+
+            throw new Exception("no success");
+        }
+
+        @Override
+        protected Response getFallback() {
+            return new Response(Response.INTERNAL_ERROR);
+        }
+    };
+
+    @Path("/callme")
+    public Response callme() {
+        return hystrixCommand.execute();
     }
 }
