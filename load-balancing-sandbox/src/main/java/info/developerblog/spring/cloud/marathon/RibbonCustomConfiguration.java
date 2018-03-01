@@ -40,8 +40,13 @@ public class RibbonCustomConfiguration {
 
     @Bean
     public ILoadBalancer ribbonLoadBalancer(IClientConfig config,
-                                            ServerList<Server> serverList, ServerListFilter<Server> serverListFilter,
-                                            IRule rule, IPing ping, ServerListUpdater serverListUpdater) {
-        return new DynamicServerListLoadBalancer<>(config, rule, ping, serverList, serverListFilter, serverListUpdater);
+                                            ServerList<Server> serverList,
+                                            ServerListFilter<Server> serverListFilter,
+                                            IRule rule,
+                                            IPing ping,
+                                            ServerListUpdater serverListUpdater) {
+        return new DynamicServerListLoadBalancer<>(
+                config, rule, ping, serverList, serverListFilter, serverListUpdater
+        );
     }
 }
