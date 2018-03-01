@@ -1,10 +1,10 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
-    compile "info.developerblog.spring.cloud:spring-cloud-marathon-starter"
+    compile "info.developerblog.spring.cloud:spring-one-nio-starter"
 }
 
-jar{
+jar {
     archiveName 'app.jar'
 }
 

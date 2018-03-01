@@ -1,5 +1,7 @@
-server:
+oneserver:
+  advertiseIp: 0.0.0.0
   port: 9090
+  selectorThreadsCount: 256
 
 management.security.enabled: false
 

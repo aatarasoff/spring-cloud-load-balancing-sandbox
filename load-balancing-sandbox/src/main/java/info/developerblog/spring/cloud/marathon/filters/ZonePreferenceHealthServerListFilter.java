@@ -35,7 +35,7 @@ public class ZonePreferenceHealthServerListFilter extends ZoneAffinityServerList
             for (Server server : output) {
                 if (this.zone.equalsIgnoreCase(server.getZone())) {
                     if (stats != null) {
-                        if (stats.getSingleServerStat(server).getActiveRequestsCount() < 5) {
+                        if (stats.getSingleServerStat(server).getActiveRequestsCount() < 10) {
                             local.add(server);
                         }
                     } else {

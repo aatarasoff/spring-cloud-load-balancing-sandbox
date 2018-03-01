@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * @author alexander.tarasov
  */
-public class CircuirBreakerTrippedServerListFilter extends AbstractServerListFilter<Server> {
+public class CircuitBreakerTrippedServerListFilter extends AbstractServerListFilter<Server> {
     @Override
     public List<Server> getFilteredListOfServers(List<Server> servers) {
         LoadBalancerStats stats = getLoadBalancerStats();
@@ -18,7 +18,8 @@ public class CircuirBreakerTrippedServerListFilter extends AbstractServerListFil
             return servers;
         }
         return servers.stream()
-                .filter(server -> !stats.isCircuitBreakerTripped(server))
+                .filter(server -> !stats.getSingleServerStat(server).isCircuitBreakerTripped())
+//                .filter(server -> stats.getSingleServerStat(server).getResponseTime99point5thPercentile() < 4000.0d)
                 .collect(Collectors.toList());
     }
 }

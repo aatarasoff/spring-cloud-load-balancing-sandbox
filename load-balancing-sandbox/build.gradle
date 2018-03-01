@@ -2,6 +2,7 @@ apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile "info.developerblog.spring.cloud:spring-cloud-marathon-starter"
-    compile "org.springframework.cloud:spring-cloud-starter-hystrix"
-    compile "org.springframework.cloud:spring-cloud-starter-hystrix-dashboard"
+    compile "info.developerblog.spring.cloud:spring-one-nio-starter"
+    compile "org.springframework.cloud:spring-cloud-starter-netflix-hystrix"
+    compile "org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard"
 }

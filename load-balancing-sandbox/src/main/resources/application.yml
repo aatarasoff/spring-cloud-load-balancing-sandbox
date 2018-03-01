@@ -1,7 +1,16 @@
 server:
   port: 9090
 
-management.security.enabled: false
+management:
+  security:
+    enabled: false
+  server:
+    port: 9091
+
+oneserver:
+  advertiseIp: 0.0.0.0
+  port: 10080
+  selectorThreadsCount: 256
 
 endpoints:
   health:
@@ -11,15 +20,16 @@ endpoints:
   shutdown:
     enabled: true
 
-logging:
-  level:
-    info.developerblog.spring.cloud.marathon.RibbonCustomConfiguration: DEBUG
-    com.netflix.loadbalancer.ZoneAffinityServerListFilter: DEBUG
-#    info.developerblog.spring.cloud.marathon: DEBUG
+#logging:
+#  level:
+#    info.developerblog.spring.cloud.marathon.RibbonCustomConfiguration: DEBUG
+#    com.netflix.loadbalancer.ZoneAffinityServerListFilter: DEBUG
+
+logging.level.root: WARN
 
 feign:
   hystrix:
-    enabled: true
+    enabled: false
 
 hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 10000
 hystrix.threadpool.default.coreSize: 500
@@ -29,10 +39,17 @@ cool-app:
   ribbon:
 #    ZonePattern: '.+\.(.+)'
 #    ServerWeightTaskTimerInterval: 100
+#    zoneAffinity.minAvailableServers: 1
     NFLoadBalancerPingInterval: 100
     ServerListRefreshInterval: 1000
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 0
     OkToRetryOnAllOperations: false
-    zoneAffinity.minAvailableServers: 2
     EnableZoneAffinity: true
+
+#niws.loadbalancer.cool-app.connectionFailureCountThreshold: 1
+#niws.loadbalancer.cool-app.circuitTripTimeoutFactorSeconds: 15
+#niws.loadbalancer.cool-app.circuitTripMaxTimeoutSeconds: 30
+
+#niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit: 10
+
