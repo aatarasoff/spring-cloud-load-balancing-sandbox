@@ -10,7 +10,8 @@ management:
 oneserver:
   advertiseIp: 0.0.0.0
   port: 10080
-  selectorThreadsCount: 256
+  selectorThreadsCount: 512
+  maxWorkersCount: 100
 
 endpoints:
   health:
