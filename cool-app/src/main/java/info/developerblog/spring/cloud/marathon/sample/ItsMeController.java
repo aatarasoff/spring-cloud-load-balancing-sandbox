@@ -75,7 +75,7 @@ public class ItsMeController {
         return Response.ok("");
     }
 
-    @Path("/delayUp")
+    @Path("/delay")
     public Response delay(@Param("ms") String ms) {
         ((ConfigurableEnvironment) environment).getSystemProperties().put("TEST_APP_DELAY", ms);
         return Response.ok("");
