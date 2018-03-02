@@ -6,4 +6,4 @@ http DELETE :8080/v2/apps/cool-app?force=true
 http host:port?delay?ms=300
 
 # Some load on services
-http :10080/callme && echo "GET http://localhost:10080/callme" | vegeta attack -duration=600s -rate=120 | vegeta report
+http :10080/callme && echo "GET http://localhost:10080/callme" | vegeta attack -duration=600s -rate=30 | vegeta report
