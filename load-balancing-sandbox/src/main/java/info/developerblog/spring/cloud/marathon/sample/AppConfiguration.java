@@ -57,12 +57,12 @@ public class AppConfiguration {
                                         .andCommandKey(HystrixCommandKey.Factory.asKey("cool-app-" + host + (port > 0 ? "-" + port : "")))
                                         .andCommandPropertiesDefaults(
                                                 HystrixCommandProperties.Setter()
-                                                        .withCircuitBreakerEnabled(true)
-                                                        .withCircuitBreakerErrorThresholdPercentage(100)
+                                                        .withCircuitBreakerEnabled(false)
+//                                                        .withCircuitBreakerErrorThresholdPercentage(100)
                                                         .withFallbackEnabled(false)
                                                         .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
                                                         .withExecutionTimeoutEnabled(true)
-                                                        .withExecutionTimeoutInMilliseconds(5000)
+                                                        .withExecutionTimeoutInMilliseconds(4900)
                                         )
                                         .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("cool-app-pool-cloud"))
                                         .andThreadPoolPropertiesDefaults(

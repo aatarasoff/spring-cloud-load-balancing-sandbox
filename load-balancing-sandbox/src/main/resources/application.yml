@@ -48,9 +48,9 @@ cool-app:
     OkToRetryOnAllOperations: false
     EnableZoneAffinity: true
 
-#niws.loadbalancer.cool-app.connectionFailureCountThreshold: 1
-#niws.loadbalancer.cool-app.circuitTripTimeoutFactorSeconds: 15
-#niws.loadbalancer.cool-app.circuitTripMaxTimeoutSeconds: 30
+niws.loadbalancer.cool-app.connectionFailureCountThreshold: 1
+niws.loadbalancer.cool-app.circuitTripTimeoutFactorSeconds: 15
+niws.loadbalancer.cool-app.circuitTripMaxTimeoutSeconds: 30
 
 #niws.loadbalancer.availabilityFilteringRule.activeConnectionsLimit: 10
 
