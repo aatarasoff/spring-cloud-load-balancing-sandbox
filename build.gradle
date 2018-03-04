@@ -41,7 +41,7 @@ allprojects {
         dependencies {
             dependency 'org.projectlombok:lombok:1.16.8'
             dependency 'info.developerblog.spring.cloud:spring-cloud-marathon-starter:2.0.0.RC1'
-            dependency 'info.developerblog.spring.cloud:spring-one-nio-starter:2.0.0.RC6'
+            dependency 'info.developerblog.spring.cloud:spring-one-nio-starter:2.0.0.RC2'
         }
     }
 
