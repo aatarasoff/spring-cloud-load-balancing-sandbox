@@ -12,7 +12,7 @@
 ```
 6. Launch sandbox app: `./gradlew :load-balancing-sandbox:bootRun`
 7. Install vegeta with brew or another way
-8. Make some load with command: `http :9090/feign && echo "GET http://localhost:9090/feign" | vegeta attack -rate=30 -duration=20s | tee results.bin | vegeta report`
+8. Make some load with command: `http :10080/callme && echo "GET http://localhost:10080/callme" | vegeta attack -rate=30 -duration=20s | tee results.bin | vegeta report`
 9. Feel free to scale app as a standard marathon feature
-10. Make instance slower or faster with passing env variable: `http -v --form POST host:port/env TEST_APP_DELAY=<delay in ms>`
+10. Make instance slower or faster with passing env variable: `http host:port?delay?ms=<baseline_delay_ms>`
 11. Change Ribbon configuration as you want
